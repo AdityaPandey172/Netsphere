@@ -14,7 +14,6 @@ import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import PfwLogo from './../images/pfw.png'
 import Logo from './../images/logo.png'
 
-
 function Header() {
     const dispatch = useDispatch()
 

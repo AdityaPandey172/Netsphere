@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import './styles/App.css';
-import Header from './Header/Header';
-import Sidebar from './Sidebar/Sidebar';
-import Feed from './Feed/Feed';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Login/Login';
 import { selectUser } from './features/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
-import Widgets from './Widgets/Widgets';
+import Home from './Home/Home';
+import Register from './Register/Register';
 
 function App() {
   const user = useSelector(selectUser);
@@ -32,26 +31,26 @@ function App() {
       }
     });
 
+
     return () => {
       unsubscribe(); // Cleanup function to unsubscribe from the listener
     };
-  }, [dispatch]); // Empty array as the second argument to run the effect only once
+  }, []); // Empty array as the second argument to run the effect only once
 
   return (
-    <div className="app">
-      
-      {!user ? (
-        <Login />
-      ) : (
-        <><Header />
-          <div className="app_body">
-            <Sidebar />
-            <Feed />
-            <Widgets />
-          </div>
-        </>
-      )}
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={user ? (
+            <Home/>
+          ) : (
+            <Login />
+          )} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
