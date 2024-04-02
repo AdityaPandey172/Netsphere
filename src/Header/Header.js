@@ -10,6 +10,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useDispatch} from 'react-redux';
 import { logout } from '../features/userSlice';
 import { auth } from '../firebase';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import PfwLogo from './../images/pfw.png'
+import Logo from './../images/logo.png'
 
 
 function Header() {
@@ -22,12 +25,19 @@ function Header() {
     };
     return (
         <div className="header">
-            <div className="header__left">
+            <div className='header__images'>
                 <img
-                    src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                    alt="linkedin logo"
+                    className='pfw__logo'
+                    src={PfwLogo}
+                    alt="PFW logo"
                 />
-
+                <img
+                    className='app__logo'
+                    src={Logo}
+                    alt="APP logo"
+                />
+            </div>
+            <div className="header__left">
                 <div className="header__search">
                     <SearchIcon style={{ color: 'black' }}/>
                     <input type="text"  placeholder="Search"/>
@@ -36,8 +46,9 @@ function Header() {
             
             <div className="header__right">
                 <HeaderOption Icon={HomeIcon} title ="Home"/>
-                <HeaderOption Icon={SupervisorAccountIcon} title ="My Network"/>
+                <HeaderOption Icon={SupervisorAccountIcon} title ="Network"/>
                 <HeaderOption Icon={BusinessCenterIcon} title ="Jobs"/>
+                <HeaderOption Icon={PersonSearchIcon} title ="Match"/>
                 <HeaderOption Icon={ChatIcon} title ="Messaging"/>
                 <HeaderOption Icon={NotificationsIcon} title ="Notifications"/>
                 <HeaderOption avatar= {true} title ="Log Out" onClick ={logoutOfApp}/>
