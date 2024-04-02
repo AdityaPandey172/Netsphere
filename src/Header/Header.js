@@ -10,7 +10,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useDispatch} from 'react-redux';
 import { logout } from '../features/userSlice';
 import { auth } from '../firebase';
-
+import logo from '../assets/Logos/logo.png';
 
 function Header() {
     const dispatch = useDispatch()
@@ -24,7 +24,7 @@ function Header() {
         <div className="header">
             <div className="header__left">
                 <img
-                    src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                    src={logo}
                     alt="linkedin logo"
                 />
 

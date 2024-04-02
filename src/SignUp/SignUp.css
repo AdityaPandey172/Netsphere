@@ -1,24 +1,25 @@
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.signup {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 90px;
 }
 
-.login > img {
+.signup > img {
   object-fit: contain;
   height: 150px;
-  box-shadow: 0px 0px 50px 7px rgb(255, 170, 255);
-  border: none;
-  margin: 30px;
+  margin-top: -80px;
+  margin-bottom: 20px;
 }
 
-.login > form {
+.signup > form {
   display: flex;
   flex-direction: column;
 }
 
-.login > form > input {
+.signup > form > input {
   width: 350px;
   height: 25px;
   font-size: 12px;
@@ -28,13 +29,13 @@
   border: 0.5px rgb(185, 183, 183) solid;
 }
 
-.login > form > input:focus {
+.signup > form > input:focus {
   outline: none !important;
   border: 2px solid #0a66c2;
   background-color: #e8f0fe;
 }
 
-.login > form > button {
+.signup > form > button {
   width: 350px;
   height: 50px;
   margin-top: 10px;
@@ -47,7 +48,7 @@
   outline: none !important;
 }
 
-.login > form > button:hover {
+.signup > form > button:hover {
   cursor: pointer;
   filter: brightness(110%);
 }
@@ -57,46 +58,46 @@
   color: #0a66c2;
 }
 
-.login > p {
+.signup > p {
   margin-top: 20px;
 }
 
-.login > h4 {
+.signup > h4 {
   font-size: 18px;
   font-weight: 500;
   margin-top: 40px;
 }
 
-.login > h4 > a {
+.signup > h4 > a {
   text-decoration: none;
   color: #0a66c2;
 }
 
 @media screen and (max-width: 750px) {
-  .login > img {
+  .signup > img {
     height: 180px;
     margin-top: -10px;
 }
 
-.login > form > input {
+.signup > form > input {
   width: 320px;
   height: 42px;
   font-size: 16px;
   margin: 0 10px 12px 10px;
  
 }
-.login > form > button {
+.signup > form > button {
   width: 250px;
   height: 50px;
   margin-top: 20px;
   margin-left: 45px;
 }
 
-.login > p {
+.signup > p {
   margin-top: 30px;
 }
 
-.login > h4 {
+.signup > h4 {
   font-size: 16px;
   font-weight: 500;
   margin-top: 70px;
