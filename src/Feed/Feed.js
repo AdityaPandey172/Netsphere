@@ -34,6 +34,11 @@ export default function Feed() {
     const sendPost = e => {
         e.preventDefault();
 
+        // Access specific user properties
+        const { displayName, email, photoUrl } = user;
+      
+       console.log("Feed E: "+displayName+" E: "+email);
+
         db.collection('posts').add({
             name: user.displayName,
             description: user.email,
