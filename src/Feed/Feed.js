@@ -66,7 +66,7 @@ export default function Feed() {
                     <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#F5987E" />
                 </div>
             </div>
-            <hr/>
+            {/* <hr/> */}
 
             {/* Posts */}
             <FlipMove>

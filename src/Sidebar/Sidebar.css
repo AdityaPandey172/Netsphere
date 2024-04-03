@@ -13,6 +13,7 @@
 
 .sidebar__top > h2 {
   font-size: 14px;
+  color: white;
 }
 
 .sidebar__top > h4 {
@@ -24,11 +25,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid lightgray;
+  border: 1px solid #2E3C51;
   border-bottom: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: white;
+  background-color: #10151D;
   padding-bottom: 10px;
 }
 .sidebar__top > img {
@@ -69,8 +70,8 @@
 .sidebar__stats {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid lightgray;
-  background-color: white;
+  border: 1px solid #2E3C51;
+  background-color: #10151D;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -83,8 +84,8 @@
 .sidebar__bottom {
   text-align: left;
   padding: 10px;
-  border: 1px solid lightgray;
-  background-color: white;
+  border: 1px solid #2E3C51;
+  background-color: #10151D;
   border-radius: 10px;
   margin-top: 10px;
 }

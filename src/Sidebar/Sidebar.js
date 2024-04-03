@@ -37,7 +37,7 @@ export default function Sidebar() {
 
             </div>
 
-            <div className="sidebar__bottom">
+            {/* <div className="sidebar__bottom">
                 <p>Recent</p>
                 {recentItem('programming')}
                 {recentItem('jobs')}
@@ -50,7 +50,7 @@ export default function Sidebar() {
                 {recentItem('developer')}
                 {recentItem('business')}
                 {recentItem('tech')}
-            </div>
+            </div> */}
         </div>
     )
 }
