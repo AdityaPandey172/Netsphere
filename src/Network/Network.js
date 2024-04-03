@@ -3,9 +3,8 @@ import './Network.css'
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import Widgets from '../Widgets/Widgets';
-import Feed from '../Feed/Feed';
 
-const Network = () => {
+function Network(){
 
     const invitationsData = [
         {
@@ -24,7 +23,7 @@ const Network = () => {
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         }
 
-    ]
+    ];
 
     const connectionsData = [
         {
@@ -58,15 +57,13 @@ const Network = () => {
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         }
 
-    ]
+    ];
 
     return(
         <>
-
             <Header />
             <div className="app_body">
                 <Sidebar />
-                {/* <Feed /> */}
                 <div className="network">
                     <div className="invitations">
                         <div className="invitations_header">
@@ -118,14 +115,3 @@ const Network = () => {
 }
 
 export default Network;
-
-
-<div className="card">
-    <img alt="user Avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" />
-    <h2>Jeffrey Garcia</h2>
-    <p>Sent you a Friend Request!</p>
-    <div className="buttongroup">
-    <button>Approve</button>
-    <button>Remove</button>
-    </div>
-</div> 

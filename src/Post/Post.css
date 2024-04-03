@@ -1,14 +1,13 @@
 .post {
   background-color: #10151D;
   padding: 15px;
-  margin-bottom: 10px;
   border-radius: 10px;
   -webkit-box-shadow: 0px 3px 11px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 3px 11px 1px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   /* border:  1px solid #2E3C51; */
   width: 600px;
-  margin: 30px;
+  margin: 15px 10px 15px 10px;
 }
 
 .post__header {
@@ -17,7 +16,7 @@
   color: #deddff;
 }
 .post__header > .MuiAvatar-colorDefault {
-  background-color: #70b5f9;
+  background-color: #DFA8EA;
   width: 45px;
   height: 45px;
   border: 2px solid rgb(255, 255, 255);

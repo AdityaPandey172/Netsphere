@@ -47,9 +47,6 @@
 
 }
 
-/* .widgets__article:hover {
-    background-color: whitesmoke;
-} */
 
 .widgets__articleLeft{
     color: #19B776;
@@ -79,5 +76,4 @@
     .widgets {
        display: none;
     }
-
 }

@@ -26,7 +26,6 @@
 .header__images .pfw__logo{
   object-fit: contain;
   height: 40px;
-  margin-left: -80px;
 }
 .header__images .app__logo{
   object-fit: contain;

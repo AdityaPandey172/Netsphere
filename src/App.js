@@ -10,6 +10,10 @@ import Home from './Home/Home';
 import Register from './Register/Register';
 import Network from './Network/Network';
 
+function ComingSoon(){
+  navigator('https://group6se.my.canva.site/soon');
+}
+
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
