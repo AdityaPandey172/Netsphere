@@ -28,7 +28,8 @@ function Widgets() {
             {newsArticle("Call for Leadership Research Papers", "Yesterday - 7:15 pm")}
             {newsArticle("Leadership Workshop on Emotional Intelligence", "Yesterday - 8 am")}
             {newsArticle("Leadership Certificate Program Enrollment Open", "Tuesday - 3 pm")}
-
+            {newsArticle("Leadership Workshop on Emotional Intelligence", "Yesterday - 8 am")}
+            {newsArticle("Leadership Certificate Program Enrollment Open", "Tuesday - 3 pm")}
         </div>
     )
 }

@@ -20,13 +20,13 @@
   margin-right: 30px;
 } */
 .header__images{
-  margin-top: 0px;
+  margin-top: 5px;
 }
 
 .header__images .pfw__logo{
   object-fit: contain;
   height: 40px;
-  margin-left: -100px;
+  margin-left: -80px;
 }
 .header__images .app__logo{
   object-fit: contain;
@@ -35,6 +35,7 @@
 }
 
 .header__search {
+  margin-top: 4px;
   padding: 10px;
   display: flex;
   align-items: center;

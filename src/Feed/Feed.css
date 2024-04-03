@@ -1,10 +1,13 @@
 .feed {
   flex: 0.5;
   margin: 0 20px;
+  width: 1000px;
+  background-color: #161F2C;
+  border-radius: 30px;
 }
 
 .feed__inputContainer {
-  background-color: #10151D;
+  background-color: #161F2C;
   padding: 10px;
   padding-bottom: 20px;
   border-radius: 10px;
@@ -32,7 +35,7 @@
   margin-left: 10px;
   outline-width: 0;
   font-weight: 600;
-  background-color: #10151D;
+  background-color: #161F2C;
   color: white;
 }
 

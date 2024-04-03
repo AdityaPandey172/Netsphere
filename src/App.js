@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login/Login';
 import { selectUser } from './features/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
 import Home from './Home/Home';
 import Register from './Register/Register';
+import Network from './Network/Network';
 
 function App() {
   const user = useSelector(selectUser);
@@ -22,7 +23,7 @@ function App() {
             email: userAuth.email,
             uid: userAuth.uid,
             displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL
+            // photoUrl: userAuth.photoURL
           })
         );
       } else {
@@ -41,13 +42,15 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+          <Route path="/login" element={user ? <Navigate to="/home" /> : <Login />} />
           <Route path="/home" element={user ? (
             <Home/>
           ) : (
             <Login />
           )} />
           <Route path="/register" element={<Register />} />
+          <Route path="/network" element={<Network />} />
         </Routes>
       </div>
     </Router>
