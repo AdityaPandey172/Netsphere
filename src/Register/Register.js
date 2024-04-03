@@ -5,7 +5,9 @@ import { login } from "../features/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import full_logo from '../assets/Logos/full_logo.png';
+import PfwLogo from './../assets/Logos/pfw.png'
+import Logo from './../assets/Logos/logo.png'
+import LeadershipbgImage from './../assets/Logos/leadership.png'
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -46,53 +48,70 @@ export default function Register() {
       
 
   return (
-    <div className="signup">
-      <img
-        src={full_logo}
-        alt="linkedin logo"
-      />
-      <form>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full name (required if registering)"
-          type="text"
-          autoComplete="new-password"
-        />
+    <div className="signup_page">
+      <div className="signup_image">
+            <img
+                src={LeadershipbgImage}
+                alt="Leadership BG Image"
+            />
+      </div>
 
-        <input
-          placeholder="Profile picture URL (optional)"
-          type="text"
-          value={profilePic}
-          onChange={(e) => setProfilePic(e.target.value)}
-        />
+      <div className="signup">
+        <div className='signup_header'>
+          <img
+              className='pfw__logo'
+              src={PfwLogo}
+              alt="PFW logo"
+          />
+          <img
+              className='app__logo'
+              src={Logo}
+              alt="APP logo"
+          />
+        </div>
+        <form>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full name"
+            type="text"
+            autoComplete="new-password"
+          />
 
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          type="email"
-          autoComplete="new-password"
-        />
+          <input
+            placeholder="Profile picture URL (optional)"
+            type="text"
+            value={profilePic}
+            onChange={(e) => setProfilePic(e.target.value)}
+          />
 
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          type="password"
-        />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            type="email"
+            autoComplete="new-password"
+          />
 
-        <span className="signup__register" onClick={register}>
-          Register Now
-        </span>
-      </form>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            type="password"
+          />
 
-      <p>
-        Already have an account? {""}
-        <span className="login__register" onClick={(e)=>navigate('/')}>
-          Log-In
-        </span>
-      </p>
+          <button className="signup__register" onClick={register}>
+            Register Now
+          </button>
+        </form>
+
+        <p>
+          Already have an account? {""}
+          <span className="login__register" onClick={(e)=>navigate('/login')}>
+            Log-In
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

@@ -69,6 +69,7 @@ export default function Feed() {
             {/* <hr/> */}
 
             {/* Posts */}
+            <div className='post_cards'>
             <FlipMove>
                 {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
                     <Post
@@ -80,6 +81,8 @@ export default function Feed() {
                     />
                 ))}
             </FlipMove>
+            </div>
+            
         </div>
     )
 }
