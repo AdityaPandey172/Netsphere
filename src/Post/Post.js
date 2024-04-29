@@ -1,15 +1,24 @@
 import InputOption from '../Helper/InputOption';
-import React, {forwardRef} from "react";
+import React, {useState, forwardRef} from "react";
 import "./Post.css";
 import { Avatar } from '@material-ui/core'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
-import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
 
 const Post =  forwardRef (({name,description, message, photoUrl}, ref) => {
+    const [interested, setInterested] = useState(false);
+    const [saved, setSaved] = useState(false);
+    
+    const handleInterestedClick = () => {
+        setInterested(!interested);
+      };
+
+      const handlePostSave= () => {
+        setSaved(!saved);
+      };
+
     return (
         <div ref ={ref} className ='post'>
             <div className="post__header">
@@ -25,9 +34,21 @@ const Post =  forwardRef (({name,description, message, photoUrl}, ref) => {
                 <p>{message}</p>
             </div>
             <div className="post__buttons">
-                <InputOption Icon = {ThumbUpIcon}  title ="Interested" color ="gray"/>
+                <a onClick={handleInterestedClick}>
+                    <InputOption
+                    Icon={ThumbUpIcon}
+                    title="Interested"
+                    color={interested ? "#19B776" : "gray"}
+                /></a>
+                
                 <InputOption Icon = {ChatOutlinedIcon}  title ="Comment" color ="gray"/>
-                <InputOption Icon = {TurnedInNotIcon}  title ="Save" color ="gray"/>
+                {/* <InputOption Icon = {TurnedInNotIcon}  title ="Save" color ="gray"/> */}
+                <a onClick={handlePostSave}>
+                    <InputOption
+                    Icon={TurnedInNotIcon}
+                    title={saved ? "Saved" : "Save"}
+                    color={saved ? "#19B776" : "gray"}
+                /></a>
                 {/* <InputOption Icon = {SendOutlinedIcon}  title ="Send" color ="gray"/> */}
             </div>   
         </div>

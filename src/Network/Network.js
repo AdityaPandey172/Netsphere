@@ -1,8 +1,8 @@
 import React from "react";
-import './Network.css'
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import Widgets from '../Widgets/Widgets';
+import './Network.css'
 
 function Network(){
 

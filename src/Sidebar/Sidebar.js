@@ -48,7 +48,7 @@ export default function Sidebar() {
             </div>
 
              <div className="sidebar__bottom">
-                <p>Recent Events</p>
+                <h2>Recent Events</h2>
                 {recentItem('Career Connections: Real World Scoop With FCC (Indiana)')}
                 {recentItem('American Red Cross Blood Drive')}
                 {recentItem('Commencement 2024')}

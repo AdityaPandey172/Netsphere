@@ -26,7 +26,6 @@ export default function Login() {
             // profileUrl: userAuth.user.photoURL,
           })
         );
-        localStorage.setItem('email',)
         navigator('/home');
         }).catch((error) => alert(error));
       };
