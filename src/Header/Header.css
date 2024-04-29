@@ -3,31 +3,45 @@
   top: 0;
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 0.1px solid lightgrey;
+  border-bottom: 0.1px solid #2E3C51;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
   z-index: 999;
-  background-color: white;
+  background-color: #161F2C;
 
 }
 .header__left {
   display: flex;
 }
-.header__left > img {
+/* .header__left > img {
   object-fit: contain;
   height: 40px;
-  margin-right: 10px;
+  margin-right: 30px;
+} */
+.header__images{
+  margin-top: 5px;
+}
+
+.header__images .pfw__logo{
+  object-fit: contain;
+  height: 40px;
+}
+.header__images .app__logo{
+  object-fit: contain;
+  height: 40px;
+  margin-left: 20px;
 }
 
 .header__search {
+  margin-top: 4px;
   padding: 10px;
   display: flex;
   align-items: center;
   border-radius: 6px;
   height: 22px;
   color: gray;
-  background-color: #eef3f8;
+  background-color: #e7e7ff;
 }
 
 .header__search > input {

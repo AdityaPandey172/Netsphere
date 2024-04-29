@@ -1,0 +1,126 @@
+.signup_page{
+  background-color: #161F2C;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.signup_image img{
+  width: 700px;
+  height: 700px;
+  margin-left: -100px;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #10151D;
+  width: 500px;
+  height: 500px;
+  }
+
+  .signup_header {
+    display: flex;
+    gap: 15px;
+    margin: 0px 10px 40px 10px;
+  }
+  
+  .signup_header .pfw__logo{
+    object-fit: contain;
+    height: 40px;
+  }
+  .signup_header .app__logo{
+    object-fit: contain;
+    height: 40px;
+  }
+  
+  .signup > img {
+    object-fit: contain;
+  height: 150px;
+  box-shadow: 0px 0px 50px 7px rgb(255, 170, 255);
+  border: none;
+  margin: 30px;;
+  }
+  
+  .signup > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .signup > form > input {
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 2px solid #ddd; /* Border color input */
+    border-radius: 8px; /* Border radius input */
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+    color: #10151D;
+    background-color: #f4f4f4; /* Warna input */
+    font-size: 16px;
+  }
+  
+  .signup > form > input:focus {
+    outline: none !important;
+    border: 2px solid #0a66c2;
+    background-color: #e8f0fe;
+  }
+  
+  .signup > form > button {
+    width: 250px;
+    height: 40px;
+    margin-top: 10px;
+    color: #deddff;
+    background-color: #0a66c2;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .signup > form > button:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
+  
+  .login__register {
+    cursor: pointer;
+    color: #0a66c2;
+  }
+
+  .signup__register{
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    font-size: large;
+    color: white;
+    background-color: #0a66c2;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .signup > p {
+    margin-top: 20px;
+    color: #deddff;
+  }
+  
+  .signup > h4 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 40px;
+  }
+  
+  .signup > h4 > a {
+    text-decoration: none;
+    color: #0a66c2;
+  }

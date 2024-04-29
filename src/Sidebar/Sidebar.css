@@ -13,6 +13,7 @@
 
 .sidebar__top > h2 {
   font-size: 14px;
+  color: white;
 }
 
 .sidebar__top > h4 {
@@ -24,11 +25,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid lightgray;
-  border-bottom: 0;
+  border: 1px solid #2E3C51;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: white;
+  background-color: #10151D;
   padding-bottom: 10px;
 }
 .sidebar__top > img {
@@ -41,7 +41,7 @@
 }
 
 .sidebar__top > .MuiAvatar-colorDefault {
-  background-color: #70b5f9;
+  background-color: #DFA8EA;
   width: 70px;
   height: 70px;
   border: 2px solid rgb(255, 255, 255);
@@ -57,22 +57,21 @@
 .sidebar__stat {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.sidebar__stat > p {
+.sidebar__stat > div {
   color: gray;
   font-size: 13px;
   font-weight: 600;
 }
 
 .sidebar__stats {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid lightgray;
-  background-color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 .sidebar__statNumber {
@@ -83,8 +82,8 @@
 .sidebar__bottom {
   text-align: left;
   padding: 10px;
-  border: 1px solid lightgray;
-  background-color: white;
+  border: 1px solid #2E3C51;
+  background-color: #10151D;
   border-radius: 10px;
   margin-top: 10px;
 }
@@ -99,9 +98,11 @@
   padding: 5px;
 }
 
-.sidebar__bottom > p {
-  font-size: 13px;
+.sidebar__bottom > h2 {
+  color: #deddff;
+  font-size: 16px;
   padding-bottom: 10px;
+  font-weight: 400;
 }
 
 .sidebar__bottom > h4 {
@@ -112,14 +113,14 @@
 }
 
 .sidebar__recentItem:hover {
-  background-color: whitesmoke;
+  background-color: #dfa8ea;
   border-radius: 10px;
   cursor: pointer;
   color: black;
 }
 
 .sidebar__hash {
-  margin-right: 10px;
+  margin-right: 5px;
   margin-left: 5px;
 }
 

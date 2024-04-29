@@ -21,14 +21,15 @@ function Widgets() {
     return (
         <div className="widgets">
             <div className="widgets__header">
-                <h2>Linkedin News</h2>
+                <h2>Announcements</h2>
                 <InfoOutlinedIcon />
             </div>
-            {newsArticle("Professor Putin posted a research recently", "Latest - 5 min ago")}
-            {newsArticle("Donald Trump wants to connect with you", "Yesterday - 7:15 pm")}
-            {newsArticle("You application for RA has been processed and handed over to Osama Bin Laden", "Yesterday - 8 am")}
-            {newsArticle("New Internships are posted recently", "Tuesday - 3 pm")}
-
+            {newsArticle("New Leadership Development Program Launch", "Latest - 5 min ago")}
+            {newsArticle("Call for Leadership Research Papers", "Yesterday - 7:15 pm")}
+            {newsArticle("Leadership Workshop on Emotional Intelligence", "Yesterday - 8 am")}
+            {newsArticle("Leadership Certificate Program Enrollment Open", "Tuesday - 3 pm")}
+            {newsArticle("Leadership Workshop on Emotional Intelligence", "Yesterday - 8 am")}
+            {newsArticle("Leadership Certificate Program Enrollment Open", "Tuesday - 3 pm")}
         </div>
     )
 }

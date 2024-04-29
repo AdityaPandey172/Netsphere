@@ -10,7 +10,12 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useDispatch} from 'react-redux';
 import { logout } from '../features/userSlice';
 import { auth } from '../firebase';
-
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import EventIcon from '@mui/icons-material/Event';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PfwLogo from './../assets/Logos/pfw.png'
+import Logo from './../assets/Logos/logo.png'
+import { Link } from "react-router-dom";
 
 function Header() {
     const dispatch = useDispatch()
@@ -18,16 +23,22 @@ function Header() {
     const logoutOfApp = ()=>{
         dispatch(logout())
         auth.signOut();
-
     };
     return (
         <div className="header">
-            <div className="header__left">
+            <div className='header__images'>
                 <img
-                    src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                    alt="linkedin logo"
+                    className='pfw__logo'
+                    src={PfwLogo}
+                    alt="PFW logo"
                 />
-
+                <img
+                    className='app__logo'
+                    src={Logo}
+                    alt="APP logo"
+                />
+            </div>
+            <div className="header__left">
                 <div className="header__search">
                     <SearchIcon style={{ color: 'black' }}/>
                     <input type="text"  placeholder="Search"/>
@@ -35,12 +46,14 @@ function Header() {
             </div>
             
             <div className="header__right">
-                <HeaderOption Icon={HomeIcon} title ="Home"/>
-                <HeaderOption Icon={SupervisorAccountIcon} title ="My Network"/>
-                <HeaderOption Icon={BusinessCenterIcon} title ="Jobs"/>
-                <HeaderOption Icon={ChatIcon} title ="Messaging"/>
-                <HeaderOption Icon={NotificationsIcon} title ="Notifications"/>
-                <HeaderOption avatar= {true} title ="Log Out" onClick ={logoutOfApp}/>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={HomeIcon} title ="Home"/></Link>
+                <Link to='/network' style={{ textDecoration: 'none' }}><HeaderOption Icon={SupervisorAccountIcon} title ="Network"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={BusinessCenterIcon} title ="Jobs"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={PersonSearchIcon} title ="Match"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={EventIcon} title ="Event"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={ChatIcon} title ="Messaging"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={NotificationsIcon} title ="Notifications"/></Link>
+                <HeaderOption Icon={LogoutIcon} title ="Log Out" onClick ={logoutOfApp}/>
             </div>
         </div>
     );

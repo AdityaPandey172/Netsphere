@@ -2,9 +2,9 @@
     top: 80px;
     position: sticky ;
     flex: 0.3;
-    background-color: rgb(255, 255, 255);
+    background-color: #10151D;
     border-radius: 10px;
-    border:  1px solid lightgray;
+    border:  1px solid #2E3C51;
     height: fit-content;
     padding-bottom: 20px;
 
@@ -26,10 +26,11 @@
     align-items: center;
     justify-content:space-between;
     padding: 10px;
+    color: #deddff;
 }
 
 .widgets__header > .MuiSvgIcon-root {
-    color: #000000;
+    color: #deddff;
 
 }
 
@@ -46,12 +47,9 @@
 
 }
 
-.widgets__article:hover {
-    background-color: whitesmoke;
-}
 
 .widgets__articleLeft{
-    color: #70B5F9;
+    color: #19B776;
     margin-right: 5px;
 }
 
@@ -66,6 +64,7 @@
 
 .widgets__articleRight > h4 {
     font-size: 14px;
+    color: #deddff;
 }
 
 .widgets__articleRight > p {
@@ -77,5 +76,4 @@
     .widgets {
        display: none;
     }
-
 }

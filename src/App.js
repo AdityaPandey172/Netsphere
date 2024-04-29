@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import './styles/App.css';
-import Header from './Header/Header';
-import Sidebar from './Sidebar/Sidebar';
-import Feed from './Feed/Feed';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Login/Login';
 import { selectUser } from './features/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { auth } from './firebase';
 import { login, logout } from './features/userSlice';
-import Widgets from './Widgets/Widgets';
+import Home from './Home/Home';
+import Register from './Register/Register';
+import Network from './Network/Network';
+
+function ComingSoon(){
+  navigator('https://group6se.my.canva.site/soon');
+}
 
 function App() {
   const user = useSelector(selectUser);
@@ -23,7 +27,7 @@ function App() {
             email: userAuth.email,
             uid: userAuth.uid,
             displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL
+            // photoUrl: userAuth.photoURL
           })
         );
       } else {
@@ -32,26 +36,28 @@ function App() {
       }
     });
 
+
     return () => {
       unsubscribe(); // Cleanup function to unsubscribe from the listener
     };
-  }, [dispatch]); // Empty array as the second argument to run the effect only once
+  }, []); // Empty array as the second argument to run the effect only once
 
   return (
-    <div className="app">
-      
-      {!user ? (
-        <Login />
-      ) : (
-        <><Header />
-          <div className="app_body">
-            <Sidebar />
-            <Feed />
-            <Widgets />
-          </div>
-        </>
-      )}
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+          <Route path="/login" element={user ? <Navigate to="/home" /> : <Login />} />
+          <Route path="/home" element={user ? (
+            <Home/>
+          ) : (
+            <Login />
+          )} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/network" element={<Network />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

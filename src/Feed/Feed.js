@@ -19,6 +19,28 @@ export default function Feed() {
     const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handlePhotoSelection = (e) => {
+        const file = e.target.files[0]; // Access the first selected file
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setSelectedPhoto(reader.result); // Store the selected photo as base64 encoded data URL
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    };
+
     useEffect(() => {
         db.collection("posts")
             .orderBy("timestamp", "desc")
@@ -33,6 +55,11 @@ export default function Feed() {
 
     const sendPost = e => {
         e.preventDefault();
+
+        // Access specific user properties
+        const { displayName, email, photoUrl } = user;
+      
+       console.log("Feed E: "+displayName+" E: "+email);
 
         db.collection('posts').add({
             name: user.displayName,
@@ -50,10 +77,38 @@ export default function Feed() {
                 <div className="feed__input">
                     <CreateIcon />
                     <form>
-                        <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Start a post" />
+                        <input value={input} onFocus={openModal} type="text" placeholder="Start a post" />
                         <button onClick={sendPost} type="submit">Send</button>
                     </form>
                 </div>
+                {isModalOpen && (
+                    <div className="create_post_modal">
+                        <div className="modal_content">
+                            <span className="close" onClick={closeModal}>&times;</span>
+                            <textarea
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                placeholder="Write your post here..."
+                            />
+                            <div className='photo_select'>   
+                                {selectedPhoto && <img src={selectedPhoto} alt="Selected" />}
+                            </div>
+                            
+                            <div className="feed__inputOptions">
+                                <label htmlFor="photoInput">
+                                    <InputOption Icon={ImageIcon} title="Photo" color="#70B5F9" />
+                                </label>
+                                <input id="photoInput" type="file" accept="image/*" onChange={handlePhotoSelection} style={{ display: 'none' }}/>
+                                <InputOption Icon={SubscriptionsIcon} title="Video" color="#7FC15E" />
+                            </div>
+                            {/* <button onClick={sendPost}>Post</button> */}
+                            <hr />
+                            <div className='post_button'>
+                                <button onClick={sendPost}>Post</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div className="feed__inputOptions">
                     <InputOption Icon={ImageIcon} title="Photo" color="#70B5F9" />
                     <InputOption Icon={SubscriptionsIcon} title="Video" color="#7FC15E" />
@@ -61,9 +116,10 @@ export default function Feed() {
                     <InputOption Icon={CalendarViewDayIcon} title="Write article" color="#F5987E" />
                 </div>
             </div>
-            <hr/>
+            {/* <hr/> */}
 
             {/* Posts */}
+            <div className='post_cards'>
             <FlipMove>
                 {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
                     <Post
@@ -75,6 +131,8 @@ export default function Feed() {
                     />
                 ))}
             </FlipMove>
+            </div>
+            
         </div>
     )
 }
