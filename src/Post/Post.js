@@ -7,7 +7,7 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
 
-const Post =  forwardRef (({name,description, message, photoUrl}, ref) => {
+const Post =  forwardRef (({name, description, message, image_url}, ref) => {
     const [interested, setInterested] = useState(false);
     const [saved, setSaved] = useState(false);
     
@@ -22,7 +22,7 @@ const Post =  forwardRef (({name,description, message, photoUrl}, ref) => {
     return (
         <div ref ={ref} className ='post'>
             <div className="post__header">
-                <Avatar src={photoUrl}>{name[0]}</Avatar>
+                <Avatar src="">{name[0]}</Avatar>
                 <div className="post__info">
                     <h2>{name}</h2>
                     <p>{description}</p>
@@ -32,6 +32,7 @@ const Post =  forwardRef (({name,description, message, photoUrl}, ref) => {
 
             <div className="post__body">
                 <p>{message}</p>
+                {image_url && (<img src={image_url}/>)}
             </div>
             <div className="post__buttons">
                 <a onClick={handleInterestedClick}>

@@ -59,3 +59,8 @@
     }
 
 }
+
+.post__body img{
+  width: 600px;
+  margin-top: 20px;
+}

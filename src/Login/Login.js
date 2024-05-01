@@ -17,18 +17,37 @@ export default function Login() {
   const loginToApp = (e) => {
     e.preventDefault();
 
-    auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
-        dispatch(
-          login({
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            displayName: userAuth.user.displayName,
-            // profileUrl: userAuth.user.photoURL,
-          })
-        );
+
+    const url = 'http://127.0.0.1:8000/api/users/login/';
+        fetch(`${url}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "email": email,
+          "password": password
+        })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched Data:', data);
+            navigator('/home');
+            dispatch(
+                    login({
+                      email: data["email"],
+                      uid: data["id"],
+                      displayName: data["name"],
+                      // profileUrl: userAuth.user.photoURL,
+                    })
+                  );
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
         navigator('/home');
-        }).catch((error) => alert(error));
-      };
+  };
 
 
   const register = () => {
