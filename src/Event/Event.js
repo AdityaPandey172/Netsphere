@@ -63,7 +63,7 @@ const EventPage = () => {
     <div className="event-page">
       <Header />
       <div className="main-content">
-        <Sidebar />
+      
         <div className="event-details">
           {/* Map through eventData to render EventDetail components */}
           {eventData.map((event, index) => (
@@ -71,7 +71,7 @@ const EventPage = () => {
           ))}
         </div>
       </div>
-      <Widgets />
+    
     </div>
   );
 };

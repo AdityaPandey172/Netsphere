@@ -1,0 +1,70 @@
+/* messaging.css */
+.app_body {
+  display: flex;
+  /* ... other styles */
+}
+
+.messages {
+  flex: 1;
+  /* ... other styles */
+}
+
+.messages_header {
+  /* ... existing styles */
+}
+
+.messages_cards {
+  /* ... existing styles */
+}
+
+.each_message_card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  /* ... other styles */
+}
+
+.each_message_card img {
+  border-radius: 50%;
+  margin-right: 10px;
+  /* ... other styles */
+}
+
+.each_message_card h2,
+.each_message_card p {
+  margin: 0;
+  /* ... other styles */
+}
+
+.reply_button {
+  margin-left: auto;
+  /* ... other styles */
+}
+
+.message_input_container {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.message_input_container input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.message_input_container button {
+  padding: 10px 20px;
+  background-color: #0073b1;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.message_input_container button:hover {
+  background-color: #005682;
+}
