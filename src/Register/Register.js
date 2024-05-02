@@ -1,9 +1,5 @@
-
 import React, {useState } from "react";
 import "./Register.css";
-import { login } from "../features/userSlice";
-import { useDispatch } from "react-redux";
-import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import PfwLogo from './../assets/Logos/pfw.png'
 import Logo from './../assets/Logos/logo.png'
@@ -12,39 +8,38 @@ import LeadershipbgImage from './../assets/Logos/leadership.png'
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [profilePic, setProfilePic] = useState("");
-  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const navigate = useNavigate();  
 
-    const register = () => {
-        if (!name) {
-          return alert("A full name is required to register.");
-        }
+  const register = (e) => {
+      e.preventDefault();
+
+      console.log("resgietr")
+      const url = 'http://127.0.0.1:8000/api/users/register/';
+      fetch(`${url}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "password": password
+      })
+      })
+      .then(response => {
+          console.log('Fetched Data:', response);
+          navigate('/login');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    
       
-        auth.createUserWithEmailAndPassword(email, password)
-          .then((userAuth) => {
-            userAuth.user.updateProfile({
-              displayName: name,
-              photoURL: profilePic || null, // Ensure profilePic is not undefined
-            }).then(() => {
-              dispatch(
-                login({
-                  email: userAuth.user.email,
-                  uid: userAuth.user.uid,
-                  displayName: name,
-                  photoUrl: profilePic || null, // Ensure profilePic is not undefined
-                })
-              );
-              navigate('/home');
-            }).catch(error => {
-              console.log("Error updating profile:", error);
-              // Handle error updating profile
-            });
-          })
-          .catch((error) => alert(error));
-      };
+    };
       
 
   return (
@@ -71,18 +66,19 @@ export default function Register() {
         </div>
         <form>
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="First name"
             type="text"
             autoComplete="new-password"
           />
 
           <input
-            placeholder="Profile picture URL (optional)"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Last name"
             type="text"
-            value={profilePic}
-            onChange={(e) => setProfilePic(e.target.value)}
+            autoComplete="new-password"
           />
 
           <input
@@ -100,7 +96,7 @@ export default function Register() {
             type="password"
           />
 
-          <button className="signup__register" onClick={register}>
+          <button className="signup__register" type="submit" onClick={register}>
             Register Now
           </button>
         </form>

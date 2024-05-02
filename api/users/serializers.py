@@ -6,7 +6,7 @@ import json
 User = get_user_model()
 
 
-class CreateUserSerializer(serializers.ModelSerializer):
+class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ['email', 'first_name', 'last_name', 'password', 'role']
@@ -17,8 +17,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             password=validated_data['password'],
-            role=validated_data['role'],
-            status='active'
+            role="student",
+            status='inactive'
         )
         user.save()
         return user

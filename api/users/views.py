@@ -8,23 +8,19 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ObjectDoesNotExist
 from .models import User
-from .serializers import CreateUserSerializer
-from .permissions import AdminPermission
-import random
-from datetime import datetime, timedelta
+from .serializers import RegisterUserSerializer
 
 
-class CreateUserView(APIView):
-    authentication_classes = [TokenAuthentication] 
-    permission_classes = [AdminPermission] 
-    
+class RegisterUserView(APIView):
+
     def post(self, request):
         data = request.data
-        serializer = CreateUserSerializer(data=data)
+        serializer = RegisterUserSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response(status=status.HTTP_201_CREATED)
+        print("USER creation successful", serializer)
+        return Response(status=201)
 
 
 class LoginView(APIView):

@@ -6,7 +6,7 @@ from django.conf import settings
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, verbose_name='Post ID', default=uuid.uuid4, editable=False)
     message = models.TextField(blank=True)
-    image_url = models.ImageField(upload_to='images/')
+    image_url = models.TextField(blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='posts_created_by', on_delete=models.SET_NULL, blank=True, null=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='posts_updated_by', on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

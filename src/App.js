@@ -1,58 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './Login/Login';
-import { selectUser } from './features/userSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import { auth } from './firebase';
-import { login, logout } from './features/userSlice';
 import Home from './Home/Home';
 import Register from './Register/Register';
 import Network from './Network/Network';
 
-function ComingSoon(){
-  navigator('https://group6se.my.canva.site/soon');
-}
 
 function App() {
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-      if (userAuth) {
-        // User logged in
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            // photoUrl: userAuth.photoURL
-          })
-        );
+      // Check if the token exists in local storage
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
       } else {
-        // User is logged out
-        dispatch(logout());
+        setIsLoggedIn(false);
       }
+      console.log("setIsLoggedIn: ", isLoggedIn);
     });
-
-
-    return () => {
-      unsubscribe(); // Cleanup function to unsubscribe from the listener
-    };
-  }, []); // Empty array as the second argument to run the effect only once
 
   return (
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-          <Route path="/login" element={user ? <Navigate to="/home" /> : <Login />} />
-          <Route path="/home" element={user ? (
-            <Home/>
-          ) : (
-            <Login />
-          )} />
+          <Route path="/" element={isLoggedIn ?  <Home/> : <Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/network" element={<Network />} />
         </Routes>

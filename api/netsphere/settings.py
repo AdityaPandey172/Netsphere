@@ -81,11 +81,14 @@ WSGI_APPLICATION = 'netsphere.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mnvbusgb',
+        'USER': 'mnvbusgb',
+        'PASSWORD': 'cwyFr3z9mAJePoTP8fbYWvXl0q5DWc9_',
+        'HOST': 'heffalump.db.elephantsql.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

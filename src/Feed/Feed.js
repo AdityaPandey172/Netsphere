@@ -43,11 +43,13 @@ export default function Feed() {
     };
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         const url = 'http://127.0.0.1:8000/api/posts/';
         fetch(`${url}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
         }
         })
         .then(response => response.json())
@@ -63,12 +65,13 @@ export default function Feed() {
 
     const sendPost = e => {
         e.preventDefault();
-      
+        const token = localStorage.getItem('token');
         const url = 'http://127.0.0.1:8000/api/posts/';
         fetch(`${url}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
             },
             body: JSON.stringify({
                 "message": input,
@@ -142,11 +145,15 @@ export default function Feed() {
             <FlipMove>
             {posts.map((post) => (
             <Post
-                key={post.timestamp}  // Use timestamp as a unique key or add unique IDs
+                id={post.id}
                 name={post.name}
                 description={post.description}
                 message={post.message}
                 image_url={post.image_url}
+                interested_count={post.interested}
+                saved_count={post.saved}
+                is_interested_clicked={post.is_interested}
+                is_post_saved={post.is_saved}
             />
         ))}
 
