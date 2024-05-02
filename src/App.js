@@ -10,7 +10,7 @@ import Home from './Home/Home';
 import Register from './Register/Register';
 import Network from './Network/Network';
 import Event from './Event/Event';
-import Messaging from './Messaging/Messaging';
+import Research from './Research/Research';
 import Notification from './Notification/Notification';
 
 function ComingSoon(){
@@ -59,7 +59,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/network" element={<Network />} />
           <Route path="/event" element={<Event />} />
-          <Route path="/messaging" element={<Messaging />} />
+          <Route path="/research" element={<Research />} />
           <Route path="/notification" element={<Notification />} />
 
           
