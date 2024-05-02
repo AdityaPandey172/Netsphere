@@ -9,8 +9,6 @@ import { login, logout } from './features/userSlice';
 import Home from './Home/Home';
 import Register from './Register/Register';
 import Network from './Network/Network';
-import Messaging from './Messaging/Messaging';
-import Event from './Event/Event'
 
 function ComingSoon(){
   navigator('https://group6se.my.canva.site/soon');
@@ -56,9 +54,7 @@ function App() {
             <Login />
           )} />
           <Route path="/register" element={<Register />} />
-          <Route path="/network" element={<Network />} />\
-          <Route path="/messaging" element={<Messaging />} />\ 
-          <Route path="/event" element={<Event />} />\ 
+          <Route path="/network" element={<Network />} />
         </Routes>
       </div>
     </Router>

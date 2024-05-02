@@ -50,8 +50,8 @@ function Header() {
                 <Link to='/network' style={{ textDecoration: 'none' }}><HeaderOption Icon={SupervisorAccountIcon} title ="Network"/></Link>
                 <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={BusinessCenterIcon} title ="Jobs"/></Link>
                 <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={PersonSearchIcon} title ="Match"/></Link>
-                <Link to='/Event' style={{ textDecoration: 'none' }}><HeaderOption Icon={EventIcon} title ="Event"/></Link>
-                <Link to='/Messaging' style={{ textDecoration: 'none' }}><HeaderOption Icon={ChatIcon} title ="Messaging"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={EventIcon} title ="Event"/></Link>
+                <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={ChatIcon} title ="Messaging"/></Link>
                 <Link to='/home' style={{ textDecoration: 'none' }}><HeaderOption Icon={NotificationsIcon} title ="Notifications"/></Link>
                 <HeaderOption Icon={LogoutIcon} title ="Log Out" onClick ={logoutOfApp}/>
             </div>
