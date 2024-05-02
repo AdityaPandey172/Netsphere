@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { login } from "../features/userSlice";
 import { useDispatch } from "react-redux";
 import { auth } from "../firebase";
@@ -11,24 +11,42 @@ import LeadershipbgImage from './../assets/Logos/leadership.png'
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
   const navigator = useNavigate();
+
+  useEffect(() => {
+      // Check if the token exists in local storage
+      const token = localStorage.getItem('token');
+      if (token) {
+        navigator('/home');
+        console.log("setIsLoggedIn: home");
+      } 
+    });
 
   const loginToApp = (e) => {
     e.preventDefault();
 
-    auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
-        dispatch(
-          login({
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            displayName: userAuth.user.displayName,
-            // profileUrl: userAuth.user.photoURL,
-          })
-        );
-        navigator('/home');
-        }).catch((error) => alert(error));
-      };
+    const url = 'http://127.0.0.1:8000/api/users/login/';
+        fetch(`${url}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "email": email,
+          "password": password
+        })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched Data:', data);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem("token", data.token);
+            navigator('/home');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+  };
 
 
   const register = () => {

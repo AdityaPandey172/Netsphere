@@ -21,10 +21,10 @@ export default function Sidebar() {
         <div className="sidebar">
             <div className="sidebar__top">
                 <img src="https://imageio.forbes.com/blogs-images/josephliu/files/2019/06/10-ferdinand-stohr-149422-unsplash-1200x298.jpg?height=176&width=711&fit=bounds" alt="background" />
-                <Avatar src={user.photoUrl} className="sidebar__avatar"> 
-                {user.email[0].toUpperCase()}</Avatar>
-                <h2>{user.displayName}</h2>
-                <h4>@{user.email.split('@')[0]}</h4>
+                <Avatar src="" className="sidebar__avatar"> 
+                "A"</Avatar>
+                <h2>Ajay</h2>
+                <h4>@ajay</h4>
             </div>
             
 

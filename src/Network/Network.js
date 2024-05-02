@@ -8,18 +8,18 @@ function Network(){
 
     const invitationsData = [
         {
-            "name": "Ravi",
-            "header": "Gradute Student at PFW",
+            "name": "Professor 1",
+            "header": "Professor at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Aditya Pandey",
-            "header": "Gradute Student at PFW",
+            "name": "Professor 2",
+            "header": "Professor at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Viplav",
-            "header": "Gradute Student at PFW",
+            "name": "Professor 3",
+            "header": "Professor at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         }
 
@@ -27,32 +27,32 @@ function Network(){
 
     const connectionsData = [
         {
-            "name": "Ravi",
+            "name": "Student 1",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Aditya Pandey",
+            "name": "Student 2",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Viplav",
+            "name": "Student 3",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Ravi",
+            "name": "Student 4",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Aditya Pandey",
+            "name": "Student 5",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         },
         {
-            "name": "Viplav",
+            "name": "Student 6",
             "header": "Gradute Student at PFW",
             "profile_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg"
         }
@@ -67,7 +67,7 @@ function Network(){
                 <div className="network">
                     <div className="invitations">
                         <div className="invitations_header">
-                            <h3>Invitations</h3>
+                            <h3>Professors</h3>
                         </div>
                         <div className="invitations_cards">
                             {invitationsData.map((invitation, idx) => {
@@ -77,8 +77,7 @@ function Network(){
                                         <h2>{invitation.name}</h2>
                                         <p>{invitation.header}</p>
                                         <div className="connect_button">
-                                            <button>Approve</button>
-                                            <button>Remove</button>
+                                            <button>Message</button>
                                         </div>
                                     </div>  
                                 )
@@ -89,7 +88,7 @@ function Network(){
 
                     <div className="connections">
                         <div className="connections_header">
-                            <h3>People you may know from Organizational Leadership Department</h3>
+                            <h3>Students</h3>
                         </div>
                         <div className="connections_cards">
                             {connectionsData.map((connection, idx) => {
@@ -99,7 +98,7 @@ function Network(){
                                         <h2>{connection.name}</h2>
                                         <p>{connection.header}</p>
                                         <div className="connect_button">
-                                            <button>Connect</button>
+                                            <button>Message</button>
                                         </div>
                                     </div>  
                                 )

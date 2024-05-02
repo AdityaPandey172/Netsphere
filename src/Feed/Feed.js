@@ -12,6 +12,7 @@ import { selectUser } from '../features/userSlice';
 import { db } from '../firebase';
 import firebase from '../firebase';
 import FlipMove from "react-flip-move";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Feed() {
@@ -21,7 +22,7 @@ export default function Feed() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPhoto, setSelectedPhoto] = useState(null);
-
+    const navigate = useNavigate();
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -42,33 +43,54 @@ export default function Feed() {
     };
 
     useEffect(() => {
-        db.collection("posts")
-            .orderBy("timestamp", "desc")
-            .onSnapshot((snapshot) =>
-                setPosts(snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    data: doc.data(),
-                }))
-                )
-            );
-    }, []);
+        const token = localStorage.getItem('token');
+        const url = 'http://127.0.0.1:8000/api/posts/';
+        fetch(`${url}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
+        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched Data:', data);
+            setPosts(data["posts"])
+            // navigate('/dashboard/default');
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+    }, [])
 
     const sendPost = e => {
         e.preventDefault();
-
-        // Access specific user properties
-        const { displayName, email, photoUrl } = user;
-      
-       console.log("Feed E: "+displayName+" E: "+email);
-
-        db.collection('posts').add({
-            name: user.displayName,
-            description: user.email,
-            message: input,
-            photoUrl: user.photoUrl || "",
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        const token = localStorage.getItem('token');
+        const url = 'http://127.0.0.1:8000/api/posts/';
+        fetch(`${url}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify({
+                "message": input,
+                "image_url": selectedPhoto
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched Data:', data);
+            setPosts(data["posts"]);
+        })
+        .catch(error => {
+        console.error('Error:', error);
         });
+        
         setInput("");
+        setSelectedPhoto("");
+        setIsModalOpen(false); 
+        navigate('/');
     };
 
     return (
@@ -121,15 +143,20 @@ export default function Feed() {
             {/* Posts */}
             <div className='post_cards'>
             <FlipMove>
-                {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
-                    <Post
-                        key={id}
-                        name={name}
-                        description={description}
-                        message={message}
-                        photoUrl={photoUrl}
-                    />
-                ))}
+            {posts.map((post) => (
+            <Post
+                id={post.id}
+                name={post.name}
+                description={post.description}
+                message={post.message}
+                image_url={post.image_url}
+                interested_count={post.interested}
+                saved_count={post.saved}
+                is_interested_clicked={post.is_interested}
+                is_post_saved={post.is_saved}
+            />
+        ))}
+
             </FlipMove>
             </div>
             
