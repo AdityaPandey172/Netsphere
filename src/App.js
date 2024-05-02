@@ -5,6 +5,8 @@ import Login from './Login/Login';
 import Home from './Home/Home';
 import Register from './Register/Register';
 import Network from './Network/Network';
+import Event from './Event/Event';
+import Messaging from './Messaging/Messaging';
 import Notification from './Notification/Notification';
 
 
@@ -31,7 +33,11 @@ function App() {
           <Route path="/home" element={<Home/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/network" element={<Network />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/messaging" element={<Messaging />} />
           <Route path="/notification" element={<Notification />} />
+
+          
         </Routes>
       </div>
     </Router>
