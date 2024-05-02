@@ -27,7 +27,7 @@ function Notification() {
           <Avatar src='A' className="sidebar__avatar"/> 
         </div>
 
-        <div className="widgets__articleRight">
+        <div className="widgets__articleRight" style={{marginLeft: '7px'}}>
             <span style={{color: '#deddff'}}><b><u>{name}</u></b> {heading}</span>
             <p>{subtitle}</p>
         </div>
@@ -39,7 +39,7 @@ function Notification() {
       <Header />
         <div className="app_body">
 
-          <div className="notification">
+          <div className="notification" style={{padding: '10px'}}>
 
             {/* Notifications */}
             <div className='post_cards'>
