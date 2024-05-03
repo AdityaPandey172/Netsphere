@@ -1,72 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import Widgets from '../Widgets/Widgets';
 import './Research.css';
 
 // EventDetail component to display individual event details
-const EventDetail = ({ title, description, duration, date}) => {
+const EventDetail = ({ title, description, duration, date }) => {
   return (
     <div className="event-detail">
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>Duration: {duration}</p>
-      <p>Date: {date}</p>
+      <h2>{title}</h2> {/* Displaying the title of the event */}
+      <p>{description}</p> {/* Displaying the description of the event */}
+      <p>Duration: {duration}</p> {/* Displaying the duration of the event */}
+      <p>Date: {date}</p> {/* Displaying the date of the event */}
     </div>
   );
 };
 
 // EventPage component that will be the main container for your event details
 const EventPage = () => {
-  // Sample event data
-  const eventData = [
-    {
-      title: 'Gender Differences in Leadership Styles and Practices',
-      description: 'Join our research team in examining the unique ways in which men and women lead and the impact of these differences on organizational success.',
-      duration:  '3 months',
-      date:  'May-Aug 2024'
-    },
-    {
-        title: 'The Role of Leadership in Building High-Performance Teams',
-        description: 'Be part of our study exploring the pivotal role leadership plays in shaping cohesive, successful teams that excel in achieving organizational goals.',
-        duration: '4 months',
-        date: 'Sept-Dec 2024'
-        
-      },
-      {
-        title: 'Get Ahead The Influence of Transformational Leadership on Employee Growth and Development',
-        description: 'Collaborate with us in examining how transformational leadership empowers employees professional evolution, ultimately driving organizational success.',
-        duration: '10 months',
-        date: 'Aug 2024- May 2025'
-      },
-      {
-        title: 'Leadership during Crisis Management and the Strategies used to Navigate through Challenging Times',
-        description: 'Join us in exploring Leadership during Crisis Management and uncovering effective strategies for navigating challenging times.Shape Your Future: Explore Top Internship Opportunities at the "Internship Fair" for Organizational Leadership!',
-        duration: '12 months',
-        date: 'Jan 2025 - Dec 2025'
-      },
-      {
-        title: 'Research Symposium',
-        description: 'Collaborate and Innovate: "Research Symposium"- A Meeting of Minds for Organizational Leadership Excellence!',
-        duration: '3 months',
-        date: 'June 1, 2024'
-      },
-    // Add more event objects here
-  ];
+
+  const [research, setResearch] = useState([]) // State variable to store research data
+
+  useEffect(() => {
+    // Fetching research data from the API when the component mounts
+    const token = localStorage.getItem('token'); // Getting the token from local storage
+    const url = 'http://127.0.0.1:8000/api/research/'; // API endpoint for research data
+    fetch(`${url}`, {
+      method: 'GET', // HTTP GET request
+      headers: {
+        'Content-Type': 'application/json', // Specifying the content type of the request
+        'Authorization': `Token ${token}` // Adding authorization token to the request header
+      }
+    })
+      .then(response => response.json()) // Parsing the JSON response
+      .then(data => {
+        console.log('Fetched Data:', data); // Logging the fetched data to the console
+        setResearch(data); // Updating the research state with the fetched data
+        // navigate('/dashboard/default'); // Navigating to a different route (not implemented here)
+      })
+      .catch(error => {
+        console.error('Error:', error); // Logging any errors to the console
+      });
+  }, []) // Empty dependency array ensures the effect runs only once when the component mounts
 
   return (
     <div className="event-page">
-      <Header />
+      <Header /> {/* Rendering the Header component */}
       <div className="main-content">
-      
         <div className="event-details">
-          {/* Map through eventData to render EventDetail components */}
-          {eventData.map((event, index) => (
-            <EventDetail key={index} {...event} />
+          {/* Mapping through the research data to render EventDetail components */}
+          {research.map((event, index) => (
+            <EventDetail key={index} {...event} /> // Passing event details as props to EventDetail component
           ))}
         </div>
       </div>
-    
     </div>
   );
 };
