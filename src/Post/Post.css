@@ -59,3 +59,50 @@
     }
 
 }
+
+.post__body img{
+  width: 600px;
+  margin-top: 20px;
+}
+
+.post_reactions{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+hr{
+  border: 0.1px solid #2E3C51;
+  margin-top: 0; /* Added to remove space */
+}
+
+.interested_reaction{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  margin-right: auto;
+}
+
+.interested_reaction p{
+  font-size: 15px;
+  color: gray;
+}
+
+.saved_reaction{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.saved_reaction p{
+  font-size: 15px;
+  color: gray;
+}
+
+/* .interested_reaction_icon{
+  font-size: 1px;
+} */

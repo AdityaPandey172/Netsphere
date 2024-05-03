@@ -1,7 +1,7 @@
-.feed {
-  flex: 0.5;
+.notification {
+  flex: 3;
   margin: 0 20px;
-  width: 900px;
+  width: 1000px;
   background-color: #161F2C;
   border-radius: 30px;
 }

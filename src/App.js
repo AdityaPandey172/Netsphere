@@ -1,60 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './Login/Login';
-import { selectUser } from './features/userSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import { auth } from './firebase';
-import { login, logout } from './features/userSlice';
-import Home from './Home/Home';
-import Register from './Register/Register';
-import Network from './Network/Network';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Login from './Login/Login'; // Importing the Login component
+import Home from './Home/Home'; // Importing the Home component
+import JobCard from './Jobs/Jobs'; // Importing the JobCard component
+import Register from './Register/Register'; // Importing the Register component
+import Network from './Network/Network'; // Importing the Network component
+import Event from './Event/Event'; // Importing the Event component
+import Research from './Research/Research'; // Importing the Research component
+import Notification from './Notification/Notification'; // Importing the Notification component
 
-function ComingSoon(){
-  navigator('https://group6se.my.canva.site/soon');
-}
-
+// App component
 function App() {
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State variable to track user login status
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-      if (userAuth) {
-        // User logged in
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            // photoUrl: userAuth.photoURL
-          })
-        );
+      // Check if the token exists in local storage
+      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      if (token) {
+        setIsLoggedIn(true); // Set isLoggedIn to true if token exists
       } else {
-        // User is logged out
-        dispatch(logout());
+        setIsLoggedIn(false); // Set isLoggedIn to false if token doesn't exist
       }
+      console.log("setIsLoggedIn: ", isLoggedIn); // Log the current value of isLoggedIn
     });
-
-
-    return () => {
-      unsubscribe(); // Cleanup function to unsubscribe from the listener
-    };
-  }, []); // Empty array as the second argument to run the effect only once
 
   return (
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-          <Route path="/login" element={user ? <Navigate to="/home" /> : <Login />} />
-          <Route path="/home" element={user ? (
-            <Home/>
-          ) : (
-            <Login />
-          )} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/network" element={<Network />} />
+          {/* Route for the Home component, only render if user is logged in */}
+          <Route path="/" element={isLoggedIn ?  <Home/> : <Login />} />
+          <Route path="/login" element={<Login />} /> {/* Route for the Login component */}
+          <Route path="/home" element={<Home/>} /> {/* Route for the Home component */}
+          <Route path="/jobs" element={<JobCard/>} /> {/* Route for the JobCard component */}
+          <Route path="/register" element={<Register />} /> {/* Route for the Register component */}
+          <Route path="/network" element={<Network />} /> {/* Route for the Network component */}
+          <Route path="/event" element={<Event />} /> {/* Route for the Event component */}
+          <Route path="/research" element={<Research />} /> {/* Route for the Research component */}
+          <Route path="/notification" element={<Notification />} /> {/* Route for the Notification component */}
         </Routes>
       </div>
     </Router>

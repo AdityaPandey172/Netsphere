@@ -1,90 +1,97 @@
-
 import React, {useState } from "react";
-import "./Register.css";
-import { login } from "../features/userSlice";
-import { useDispatch } from "react-redux";
-import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
-import PfwLogo from './../assets/Logos/pfw.png'
-import Logo from './../assets/Logos/logo.png'
-import LeadershipbgImage from './../assets/Logos/leadership.png'
+import "./Register.css"; // Importing CSS styles for the Register component
+import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from react-router-dom
+import PfwLogo from './../assets/Logos/pfw.png'; // Importing PFW logo image
+import Logo from './../assets/Logos/logo.png'; // Importing APP logo image
+import LeadershipbgImage from './../assets/Logos/leadership.png'; // Importing background image
 
+// Register component function
 export default function Register() {
+  // State variables to store form input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [profilePic, setProfilePic] = useState("");
-  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  const navigate = useNavigate();  
+  const navigate = useNavigate(); // Initializing the useNavigate hook for navigation  
 
-    const register = () => {
-        if (!name) {
-          return alert("A full name is required to register.");
-        }
+  // Function to handle form submission
+  const register = (e) => {
+      e.preventDefault(); // Preventing default form submission behavior
+
+      console.log("register"); // Logging message to console
+
+      // API endpoint for user registration
+      const url = 'http://127.0.0.1:8000/api/users/register/';
       
-        auth.createUserWithEmailAndPassword(email, password)
-          .then((userAuth) => {
-            userAuth.user.updateProfile({
-              displayName: name,
-              photoURL: profilePic || null, // Ensure profilePic is not undefined
-            }).then(() => {
-              dispatch(
-                login({
-                  email: userAuth.user.email,
-                  uid: userAuth.user.uid,
-                  displayName: name,
-                  photoUrl: profilePic || null, // Ensure profilePic is not undefined
-                })
-              );
-              navigate('/home');
-            }).catch(error => {
-              console.log("Error updating profile:", error);
-              // Handle error updating profile
-            });
-          })
-          .catch((error) => alert(error));
-      };
+      // Fetching data from the API endpoint
+      fetch(`${url}`, {
+      method: 'POST', // HTTP POST method
+      headers: {
+          'Content-Type': 'application/json' // Setting request header to JSON format
+      },
+      // Converting form data to JSON string
+      body: JSON.stringify({
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "password": password
+      })
+      })
+      // Handling response from the server
+      .then(response => {
+          console.log('Fetched Data:', response); // Logging fetched data to console
+          navigate('/login'); // Navigating to login page after successful registration
+      })
+      // Handling error if fetch request fails
+      .catch(error => {
+        console.error('Error:', error); // Logging error to console
+      });
+    };
       
-
+  // JSX structure for the Register component
   return (
-    <div className="signup_page">
-      <div className="signup_image">
+    <div className="signup_page"> {/* Main container for the signup page */}
+      <div className="signup_image"> {/* Container for the background image */}
             <img
-                src={LeadershipbgImage}
+                src={LeadershipbgImage} // Rendering background image
                 alt="Leadership BG Image"
             />
       </div>
 
-      <div className="signup">
-        <div className='signup_header'>
+      <div className="signup"> {/* Container for the signup form */}
+        <div className='signup_header'> {/* Header section containing logos */}
           <img
               className='pfw__logo'
-              src={PfwLogo}
+              src={PfwLogo} // Rendering PFW logo
               alt="PFW logo"
           />
           <img
               className='app__logo'
-              src={Logo}
+              src={Logo} // Rendering APP logo
               alt="APP logo"
           />
         </div>
-        <form>
+        <form> {/* Form for user registration */}
+          {/* Input field for first name */}
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="First name"
             type="text"
             autoComplete="new-password"
           />
 
+          {/* Input field for last name */}
           <input
-            placeholder="Profile picture URL (optional)"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Last name"
             type="text"
-            value={profilePic}
-            onChange={(e) => setProfilePic(e.target.value)}
+            autoComplete="new-password"
           />
 
+          {/* Input field for email */}
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -93,6 +100,7 @@ export default function Register() {
             autoComplete="new-password"
           />
 
+          {/* Input field for password */}
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -100,13 +108,16 @@ export default function Register() {
             type="password"
           />
 
-          <button className="signup__register" onClick={register}>
+          {/* Button to submit the registration form */}
+          <button className="signup__register" type="submit" onClick={register}>
             Register Now
           </button>
         </form>
 
+        {/* Message for users who already have an account */}
         <p>
           Already have an account? {""}
+          {/* Link to navigate to the login page */}
           <span className="login__register" onClick={(e)=>navigate('/login')}>
             Log-In
           </span>

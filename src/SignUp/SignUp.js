@@ -71,13 +71,6 @@ export default function Login() {
         />
 
         <input
-          placeholder="Profile picture URL (optional)"
-          type="text"
-          value={profilePic}
-          onChange={(e) => setProfilePic(e.target.value)}
-        />
-
-        <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
