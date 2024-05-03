@@ -40,3 +40,60 @@ class PostsSave(models.Model):
     
     class Meta:
         db_table = "posts_save"
+
+
+class Events(models.Model):
+    id = models.UUIDField(primary_key=True, verbose_name='Events ID', default=uuid.uuid4, editable=False)
+    title = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
+    location = models.TextField(blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='events_created_by', on_delete=models.SET_NULL, blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='events_updated_by', on_delete=models.SET_NULL, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = "events"
+
+
+class Research(models.Model):
+    id = models.UUIDField(primary_key=True, verbose_name='Research ID', default=uuid.uuid4, editable=False)
+    title = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    date = models.DateField(blank=True,  null=True)
+    duration = models.CharField(max_length=250, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='research_created_by', on_delete=models.SET_NULL, blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='research_updated_by', on_delete=models.SET_NULL, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = "research"
+
+
+class Announcements(models.Model):
+    id = models.UUIDField(primary_key=True, verbose_name='Announcements ID', default=uuid.uuid4, editable=False)
+    title = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='announcements_created_by', on_delete=models.SET_NULL, blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='announcements_updated_by', on_delete=models.SET_NULL, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = "announcements"
+
+
+class Notifications(models.Model):
+    id = models.UUIDField(primary_key=True, verbose_name='Notifications ID', default=uuid.uuid4, editable=False)
+    description = models.TextField(blank=True)
+    is_read = models.BooleanField(default=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notifications_created_by', on_delete=models.SET_NULL, blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notifications_updated_by', on_delete=models.SET_NULL, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "notifications"
